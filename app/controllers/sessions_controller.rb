@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       result['access_token'] = SecureRandom.hex(32)
       render json: result
     else
-      render status: 400, json: { message: 'invalid email or password.'}
+      render status: 400, json: { errors: ['invalid email or password.']}
     end
   end
 
