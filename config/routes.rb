@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'users/sign_in' => 'sessions#create'
+  delete 'users/sign_out' => 'sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
