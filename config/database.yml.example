@@ -1,5 +1,5 @@
 development: &default
-  adapter: postgresql
+  adapter: mysql2
   database: mario_development
   encoding: utf8
   host: localhost

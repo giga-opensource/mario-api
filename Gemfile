@@ -4,30 +4,24 @@ gem 'rails', github: "rails/rails"
 gem 'sprockets-rails', github: "rails/sprockets-rails"
 gem 'arel', github: "rails/arel"
 
-# Use sqlite3 as the database for Active Record
-gem 'pg'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'mysql2'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use ActiveModelSerializers to serialize JSON responses
 gem 'active_model_serializers', '~> 0.10.0.rc2'
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 gem 'bcrypt'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
 
 group :development do
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'capistrano', '~> 3.4.0', require: false
+  gem 'capistrano-rvm', '~> 0.1.2'
+  gem 'capistrano-bundler', '~> 1.1.4'
+  gem 'capistrano-rails', '~> 1.1.3'
+  gem 'capistrano3-puma', '~> 1.1.0'
+  gem 'capistrano-sidekiq', '~> 0.5.3'
 end
