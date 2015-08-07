@@ -11,6 +11,8 @@ gem 'active_model_serializers', '~> 0.10.0.rc2'
 gem 'rack-cors'
 gem 'bcrypt'
 
+gem 'puma'
+
 group :development, :test do
   gem 'byebug'
 end
@@ -23,5 +25,5 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1.4'
   gem 'capistrano-rails', '~> 1.1.3'
   gem 'capistrano3-puma', '~> 1.1.0'
-  gem 'capistrano-sidekiq', '~> 0.5.3'
+  # gem 'capistrano-sidekiq', '~> 0.5.3'
 end
