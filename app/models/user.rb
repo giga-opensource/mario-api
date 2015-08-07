@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
   has_secure_password validations: true
 
   validates_confirmation_of :password
-  validates :email, :username, presence: :true
-  validates :password, presence: true, on: :create
+  validates :password, :access_token, presence: true, on: :create
+  validates :username, presence: true
+  validates :email, presence: true, uniqueness: true
 
   before_create :generate_access_token
 
