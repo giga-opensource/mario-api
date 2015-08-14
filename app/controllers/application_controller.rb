@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   class AccessDenied < StandardError; end
 
   rescue_from AccessDenied do |e|
-    render json: {error: t('unauthorized')}, status: 401
+    render json: {error: 'unauthorized'}, status: 401
   end
 
   ##
