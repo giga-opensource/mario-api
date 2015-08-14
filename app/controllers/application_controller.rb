@@ -3,9 +3,14 @@ class ApplicationController < ActionController::API
   before_action :authenticate_user_from_token!
 
   class AccessDenied < StandardError; end
+  class BadRequest < StandardError; end
 
   rescue_from AccessDenied do |e|
     render json: {error: 'unauthorized'}, status: 401
+  end
+
+  rescue_from BadRequest do |e|
+    render json: {error: 'params not right'}, status: 400
   end
 
   ##

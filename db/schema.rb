@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814014704) do
+ActiveRecord::Schema.define(version: 20150814080757) do
+
+  create_table "issues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "subject",     limit: 255
+    t.integer  "project_id",  limit: 4
+    t.integer  "assignee_id", limit: 4
+    t.integer  "creator_id",  limit: 4
+    t.datetime "due_date"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["creator_id"], name: "index_issues_on_creator_id", using: :btree
+    t.index ["project_id"], name: "index_issues_on_project_id", using: :btree
+  end
 
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name",        limit: 255
