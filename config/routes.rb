@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :projects, only: [:index, :create]
   post 'users/sign_in' => 'sessions#create'
   post 'users/new' => 'users#new'
   # The priority is based upon order of creation: first created -> highest priority.

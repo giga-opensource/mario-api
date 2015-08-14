@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 
   after_create :generate_access_token
 
+  has_many :projects_users, class_name: 'ProjectsUsers'
+  has_many :projects, through: :projects_users
+
   def generate_access_token
     self.access_token = SecureRandom.hex(32)
     self.save
