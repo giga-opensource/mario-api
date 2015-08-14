@@ -7,6 +7,8 @@ class Project < ActiveRecord::Base
   has_many :projects_users, class_name: 'ProjectsUsers'
   has_many :users, through: :projects_users
 
+  has_many :issues, dependent: :destroy
+
   after_create :create_user_link
 
   private
