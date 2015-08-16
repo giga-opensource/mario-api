@@ -8,6 +8,9 @@ class Project < ActiveRecord::Base
   has_many :users, through: :projects_users
 
   has_many :issues, dependent: :destroy
+  has_many :trackers, dependent: :destroy
+  has_many :priorities, dependent: :destroy
+  has_many :target_versions, dependent: :destroy
 
   after_create :create_user_link
 
