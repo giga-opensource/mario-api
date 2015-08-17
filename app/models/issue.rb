@@ -6,9 +6,9 @@ class Issue < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
   belongs_to :assignee, class_name: 'User', required: false
 
-  belongs_to :target_version
-  belongs_to :priority
-  belongs_to :tracker
+  belongs_to :target_version, required: false
+  belongs_to :priority, required: false
+  belongs_to :tracker, required: false
 
   scope :created_by, -> (creator) { where(creator: creator) }
   scope :assigned_to, -> (assignee) { where(assignee: assignee) }
