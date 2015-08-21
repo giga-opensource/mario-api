@@ -18,7 +18,7 @@ class IssuesController < ApplicationController
   end
 
   def show
-    render json: @issue, serializer: IssueDetailSerializer
+    render json: @issue
   end
 
   def create
