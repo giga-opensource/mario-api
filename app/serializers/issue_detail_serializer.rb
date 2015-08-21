@@ -1,5 +1,5 @@
 class IssueDetailSerializer < ActiveModel::Serializer
-  cache key: 'updated_at'
+  cache key: "issue-detail"
 
   attributes :id, :subject, :due_date, :description, :project_id
 
@@ -8,6 +8,6 @@ class IssueDetailSerializer < ActiveModel::Serializer
   belongs_to :target_version
   belongs_to :priority
   belongs_to :tracker
-  belongs_to :project
+  belongs_to :project, serializer: ProjectRelationshipsSerializer
 
 end
