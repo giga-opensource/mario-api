@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :issues, except: [:new]
   resources :projects, only: [:index, :create]
+  resources :trackers
   post 'users/sign_in' => 'sessions#create'
   post 'users/new' => 'users#new'
   # The priority is based upon order of creation: first created -> highest priority.
