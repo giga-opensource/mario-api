@@ -4,6 +4,7 @@ class IssuesController < ApplicationController
   def index
     project = Project.find_by(id: params[:project_id])
     fail BadRequest unless project
+
     issues = project.issues
 
     if creator = params[:creator_id]
@@ -14,7 +15,13 @@ class IssuesController < ApplicationController
       issues = issues.assigned_to assignee
     end
 
-    render json: issues
+    issues = issues.page(params[:page]).per(params[:perPage] || 20)
+    serializer = IssueSerializer::ArraySerializer.new(issues)
+    res = {
+      issues: IssueSerializer::Adapter::FlattenJson.create(serializer).serializable_hash,
+      meta: { total_pages: issues.total_pages, total_count: issues.total_count }
+    }
+    render json: res
   end
 
   def show

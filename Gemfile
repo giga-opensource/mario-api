@@ -12,6 +12,7 @@ gem 'rack-cors'
 gem 'bcrypt'
 
 gem 'puma'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'
