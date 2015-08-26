@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :update, :destroy]
+  before_action :set_issue, only: [:show, :update, :destroy, :upload, :attachments]
 
   def index
     project = Project.find_by(id: params[:project_id])
@@ -47,8 +47,19 @@ class IssuesController < ApplicationController
     end
   end
 
+  def upload
+    @issue.attachments.create(upload_params)
+    attachments = @issue.attachments
+    render json: attachments
+  end
+
   def destroy
     @issue.destroy
+  end
+
+  def attachments
+    attachments = @issue.attachments
+    render json: attachments
   end
 
   private
@@ -58,5 +69,9 @@ class IssuesController < ApplicationController
 
     def issue_params
       params.require(:issue).permit(:subject, :project_id, :assignee_id, :due_date, :description, :tracker_id, :priority_id, :target_version_id)
+    end
+
+    def upload_params
+      params[:files].map { |file| {file: file} }
     end
 end

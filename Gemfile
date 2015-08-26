@@ -13,6 +13,7 @@ gem 'bcrypt'
 
 gem 'puma'
 gem 'kaminari'
+gem 'paperclip'
 
 group :development, :test do
   gem 'byebug'

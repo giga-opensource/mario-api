@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :issues, except: [:new]
+  resources :issues, except: [:new] do
+    member do
+      post :upload
+      get :attachments
+    end
+  end
   resources :projects, only: [:index, :create]
   resources :trackers
   resources :priorities

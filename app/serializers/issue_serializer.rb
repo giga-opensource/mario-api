@@ -8,4 +8,5 @@ class IssueSerializer < ActiveModel::Serializer
   belongs_to :target_version
   belongs_to :priority
   belongs_to :tracker
+
 end
