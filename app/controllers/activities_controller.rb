@@ -29,7 +29,11 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    @activity.destroy
+    if @activity.destroy
+      render json: @activity
+    else
+      render json: @activity.errors, status: :unprocessable_entity
+    end
   end
 
   private
