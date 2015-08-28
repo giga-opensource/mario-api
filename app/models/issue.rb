@@ -11,6 +11,7 @@ class Issue < ActiveRecord::Base
   belongs_to :tracker, required: false
 
   has_many :attachments, as: :attachable, dependent: :destroy
+  has_many :activities, dependent: :destroy
 
   scope :created_by, -> (creator) { where(creator: creator) }
   scope :assigned_to, -> (assignee) { where(assignee: assignee) }

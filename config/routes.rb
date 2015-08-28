@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :activities, except: [:show, :new]
   resources :issues, except: [:new] do
     member do
       post :upload

@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826095721) do
+ActiveRecord::Schema.define(version: 20150828023114) do
+
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "creator_id", limit: 4
+    t.integer  "kind",       limit: 4
+    t.integer  "issue_id",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["creator_id"], name: "index_activities_on_creator_id", using: :btree
+    t.index ["issue_id"], name: "index_activities_on_issue_id", using: :btree
+  end
+
+  create_table "activity_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.text    "original",    limit: 65535
+    t.text    "transformed", limit: 65535
+    t.integer "activity_id", limit: 4
+    t.index ["activity_id"], name: "index_activity_contents_on_activity_id", using: :btree
+  end
 
   create_table "attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "attachable_type",   limit: 255
