@@ -11,6 +11,7 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new(activity_params)
+    @activity.creator = current_user
 
     if @activity.save
       render json: @activity, status: :created, location: @activity
@@ -37,6 +38,6 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-      params.require(:activity).permit(:creator_id, :issue_id, :original, :kind)
+      params.require(:activity).permit(:issue_id, :original)
     end
 end
