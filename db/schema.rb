@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828023114) do
+ActiveRecord::Schema.define(version: 20150828071902) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "creator_id", limit: 4
@@ -54,9 +54,11 @@ ActiveRecord::Schema.define(version: 20150828023114) do
     t.integer  "priority_id",       limit: 4
     t.integer  "target_version_id", limit: 4
     t.text     "description",       limit: 65535
+    t.integer  "status_id",         limit: 4
     t.index ["creator_id"], name: "index_issues_on_creator_id", using: :btree
     t.index ["priority_id"], name: "index_issues_on_priority_id", using: :btree
     t.index ["project_id"], name: "index_issues_on_project_id", using: :btree
+    t.index ["status_id"], name: "index_issues_on_status_id", using: :btree
     t.index ["target_version_id"], name: "index_issues_on_target_version_id", using: :btree
     t.index ["tracker_id"], name: "index_issues_on_tracker_id", using: :btree
   end
@@ -87,6 +89,15 @@ ActiveRecord::Schema.define(version: 20150828023114) do
     t.index ["project_id", "user_id"], name: "index_projects_users_on_project_id_and_user_id", unique: true, using: :btree
     t.index ["project_id"], name: "index_projects_users_on_project_id", using: :btree
     t.index ["user_id"], name: "index_projects_users_on_user_id", using: :btree
+  end
+
+  create_table "statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "project_id", limit: 4
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["project_id", "name"], name: "index_statuses_on_project_id_and_name", unique: true, using: :btree
+    t.index ["project_id"], name: "index_statuses_on_project_id", using: :btree
   end
 
   create_table "target_versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|

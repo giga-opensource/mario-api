@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
   has_many :trackers, dependent: :destroy
   has_many :priorities, dependent: :destroy
   has_many :target_versions, dependent: :destroy
+  has_many :statuses, dependent: :destroy
 
   after_create :create_user_link
 

@@ -9,6 +9,7 @@ class Issue < ActiveRecord::Base
   belongs_to :target_version, required: false
   belongs_to :priority, required: false
   belongs_to :tracker, required: false
+  belongs_to :status, required: false
 
   has_many :attachments, as: :attachable, dependent: :destroy
   has_many :activities, dependent: :destroy
