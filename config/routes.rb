@@ -7,7 +7,12 @@ Rails.application.routes.draw do
       get :attachments
     end
   end
-  resources :projects, only: [:index, :create]
+  resources :projects, only: [:index, :create] do
+    member do
+      get 'users' => 'projects#users'
+      post 'users' => 'projects#manage_users'
+    end
+  end
   resources :trackers
   resources :priorities
   resources :target_versions
